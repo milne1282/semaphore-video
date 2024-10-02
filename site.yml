@@ -1,8 +1,11 @@
 ---
-- hosts: SiteHosts
-  become: true
+- hosts: repo
   tasks:
+    - name: ping the host
+      ansible.builtin.ping:
+      
     - name: Print OS info
+      become: true
       ansible.builtin.apt:
         name: apache2
         state: present
