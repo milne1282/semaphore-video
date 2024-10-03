@@ -1,5 +1,6 @@
 ---
 - hosts: repo
+  gather_facts: false
   tasks:
     - name: ping the host
       ansible.builtin.ping:
