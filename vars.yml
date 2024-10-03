@@ -1,2 +1,3 @@
 ---
 repo__user: user
+repo__test: "This is a test variable"
