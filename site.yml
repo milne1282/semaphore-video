@@ -17,12 +17,22 @@
         var: hostvars['repo']['ansible_password']
     - debug:
         var: hostvars['repo']['ansible_become_password']
-      
+
+- hosts: all
+  gather_facts: no
+  pre_tasks:
+    - name: Load global variables from vars.yml
+      include_vars:
+        file: vars.yml
+        
 - hosts: repo
   gather_facts: false
   tasks:
     - name: ping the host
       ansible.builtin.ping:
+
+    - debug:
+        var: repo__test
       
     - name: Print OS info
       become: true
