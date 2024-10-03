@@ -1,4 +1,19 @@
 ---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars.yml
+    - vault
+  tasks:
+    - name: Create dynamic inventory
+      ansible.builtin.add_host:
+        name: "repo"
+        ansible_host: "192.168.2.197"
+        ansible_user: "{{ repo__user }}"
+        ansible_user_password: "{{ repo__user_password }}"
+        ansible_become_password: "{{ repo__user_become_password }}"
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+        
 - hosts: repo
   gather_facts: false
   tasks:
