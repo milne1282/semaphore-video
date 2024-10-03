@@ -13,7 +13,9 @@
         ansible_user_password: "{{ repo__user_password }}"
         ansible_become_password: "{{ repo__user_become_password }}"
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
-        
+    - debug:
+      var: hostvars['repo']['ansible_password']
+      
 - hosts: repo
   gather_facts: false
   tasks:
