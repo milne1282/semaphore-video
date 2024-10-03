@@ -33,6 +33,9 @@
 
     - debug:
         var: repo__test
+
+    - debug:
+        var: repo__fooman
       
     - name: Print OS info
       become: true
