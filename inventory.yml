@@ -1,0 +1,10 @@
+---
+SiteHosts:
+  hosts:
+    repo:
+      ansible_host: "192.168.2.197"
+      ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+      ansible_user: user
+      ansible_password: "P@ssw0rd"
+      ansible_become_password: "P@ssw0rd"
+      ansible_connection: ssh
