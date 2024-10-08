@@ -3,7 +3,7 @@
   gather_facts: false
   vars_files:
     - vars.yml
-    - vault
+#    - vault
   tasks:
     - name: Create dynamic inventory
       ansible.builtin.add_host:
