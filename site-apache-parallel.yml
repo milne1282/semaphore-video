@@ -1,0 +1,52 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars.yml
+#    - vault
+  tasks:
+    - name: Create dynamic inventory
+      ansible.builtin.add_host:
+        name: "apache1"
+        ansible_host: "192.168.2.207"
+        ansible_user: "{{ repo__user }}"
+        ansible_password: "{{ repo__user_password }}"
+        ansible_become_password: "{{ repo__user_become_password }}"
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+      ansible.builtin.add_host:
+        name: "apache2"
+        ansible_host: "192.168.2.208"
+        ansible_user: "{{ repo__user }}"
+        ansible_password: "{{ repo__user_password }}"
+        ansible_become_password: "{{ repo__user_become_password }}"
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    - debug:
+        var: hostvars['repo']['ansible_password']
+    - debug:
+        var: hostvars['repo']['ansible_become_password']
+
+- hosts: all
+  gather_facts: no
+  pre_tasks:
+    - name: Load global variables from vars.yml
+      include_vars:
+        file: vars.yml
+        
+- hosts: "{{target_host}}
+  gather_facts: false
+  tasks:
+    - name: ping the host
+      ansible.builtin.ping:
+
+    - debug:
+        var: repo__test
+
+    - debug:
+        var: repo__fooman
+      
+    - name: Print OS info
+      become: true
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: true
