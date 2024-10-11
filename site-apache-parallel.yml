@@ -5,7 +5,7 @@
     - vars.yml
 #    - vault
   tasks:
-    - name: Create dynamic inventory
+    - name: Create apache1 dynamic inventory
       ansible.builtin.add_host:
         name: "apache1"
         ansible_host: "192.168.2.207"
@@ -13,6 +13,7 @@
         ansible_password: "{{ repo__user_password }}"
         ansible_become_password: "{{ repo__user_become_password }}"
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+    - name: Create apache2 dynamic inventory
       ansible.builtin.add_host:
         name: "apache2"
         ansible_host: "192.168.2.208"
