@@ -7,7 +7,7 @@ pipeline {
           docker { image 'runner:3.10.15' }
         }
         steps {
-          sh 'ansible-playbook --inventory inventory.yml --extra-vars "repo__user=user" --extra-vars "repo__user_password=P@ssw0rd" --extra-vars "repo__user_become_password=P@ssw0rd" site.yml'
+          sh 'ansible-playbook --inventory inventory.yml --extra-vars "target_host=apache1" --extra-vars "repo__user=user" --extra-vars "repo__user_password=P@ssw0rd" --extra-vars "repo__user_become_password=P@ssw0rd" site.yml'
         }
       }
       stage('Apache 2') {
@@ -15,7 +15,7 @@ pipeline {
           docker { image 'runner:3.10.15' }
         }
         steps {
-          sh 'ansible-playbook --inventory inventory.yml --extra-vars "repo__user=user" --extra-vars "repo__user_password=P@ssw0rd" --extra-vars "repo__user_become_password=P@ssw0rd" site.yml'
+          sh 'ansible-playbook --inventory inventory.yml --extra-vars "target_host=apache2" --extra-vars "repo__user=user" --extra-vars "repo__user_password=P@ssw0rd" --extra-vars "repo__user_become_password=P@ssw0rd" site.yml'
         }
       }
     }
