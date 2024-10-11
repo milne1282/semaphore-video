@@ -22,9 +22,9 @@
         ansible_become_password: "{{ repo__user_become_password }}"
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
     - debug:
-        var: hostvars['repo']['ansible_password']
+        var: hostvars["{{target_host}}"]['ansible_password']
     - debug:
-        var: hostvars['repo']['ansible_become_password']
+        var: hostvars["{{target_host}}"]['ansible_become_password']
 
 - hosts: all
   gather_facts: no
